@@ -11,9 +11,11 @@ import OwnProfile from './Components/OwnProfile';
 import ClientProfile from './Components/ClientProfile';
 import { Chat, Logout } from '@mui/icons-material';
 import Form from './Components/Form';
-import Viewappoin from './Components/Viewappoin';
+
 
 import Viewuser from './Components/Viewuser';
+import Bookedclients from './Components/Bookedclients';
+import ChatPage from './Components/ChatPage';
 
 
 
@@ -39,10 +41,10 @@ const App = () => {
         <Route path="/ownprofile" element={<OwnProfile />} />
         <Route path="/clientownprofile" element={<ClientProfile />} />
         <Route path="/logout" element={<Logout />} />
-        <Route path="/chat" element={<Chat/>} />
         <Route path="/form" element={<Form/>} />
-        <Route path="/view" element={<Viewappoin/>} />
+        <Route path="/viewappo" element={<Bookedclients/>} />
         <Route path="/viewclients" element={<Viewuser/>} />
+       <Route path="/chat/:roomId" element={<ChatPage/>} />
         
       
       </Routes>

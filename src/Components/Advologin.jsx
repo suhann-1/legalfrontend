@@ -58,6 +58,7 @@ const AdoLogin = () => {
         localStorage.setItem('token', data.token);
 
         // Check user role and navigate accordingly
+        localStorage.setItem("advocate", JSON.stringify(data.advocate));
         if (data.role === 'admin') {
           navigate('/admin/dashboard'); // Admin dashboard route
         } else {

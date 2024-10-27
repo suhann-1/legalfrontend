@@ -33,7 +33,7 @@ const OwnProfile = () => {
   };
 
   const gotoAppointment = () => {
-    navigate('/view');
+    navigate('/viewappo');
   };
 
   const handleSaveClick = () => {
@@ -87,13 +87,18 @@ const OwnProfile = () => {
     );
   };
 
+  // Add chat navigation
+  const gotoChat = () => {
+    navigate('/chat/:roomId');
+  };
+
   return (
     <Container maxWidth="sm" sx={{ marginTop: '4rem' }}>
       <Card sx={{ maxWidth: 400, margin: '0 auto', backgroundColor: '#1e1e1e', color: 'white' }}>
         <CardMedia
           component="img"
           height="200"
-          image="/path-to-image.jpg" // Add a profile picture here if needed, or use a placeholder image
+          image="C:\Users\hisham\Downloads\default.jpg" // Add a profile picture here if needed, or use a placeholder image
           alt="Advocate Profile"
         />
         <CardContent>
@@ -173,6 +178,9 @@ const OwnProfile = () => {
               </Button>
               <Button variant="outlined" color="secondary" sx={{ marginTop: '1rem', marginLeft: '1rem' }} onClick={gotoAppointment}>
                 View Appointments
+              </Button>
+              <Button variant="outlined" color="secondary" sx={{ marginTop: '1rem', marginLeft: '1rem' }} onClick={gotoChat}>
+                Chat
               </Button>
             </>
           )}
