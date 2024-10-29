@@ -11,7 +11,7 @@ const ClientProfile = () => {
 
     const [date, setDate] = useState(null); // State for the selected date
     const [formData, setFormData] = useState({
-        name: client?.name ,
+        name: client?.fullName ,
         email: client?.email 
     });
 
@@ -21,8 +21,8 @@ const ClientProfile = () => {
                 <h1 className="text-primary">My Profile</h1>
             </header>
             
-            <Typography variant="h6">Name: {formData.name}</Typography>
-            <Typography variant="body1">Email: {formData.email}</Typography>
+            {/* <Typography variant="h6">Name: {formData.fullName}</Typography>
+            <Typography variant="body1">Email: {formData.email}</Typography> */}
             
             <div className="row">
                 <nav className="col-md-3">
@@ -32,6 +32,9 @@ const ClientProfile = () => {
                         </li>
                         <li className="nav-item">
                             <a className="nav-link text-warning" href="/chat/:roomId">Chat here</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link text-warning" href="/doc">Share your documents here</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link active text-success" aria-current="page" href="/">LogOut</a>

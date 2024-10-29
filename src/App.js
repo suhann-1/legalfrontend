@@ -16,7 +16,7 @@ import Form from './Components/Form';
 import Viewuser from './Components/Viewuser';
 import Bookedclients from './Components/Bookedclients';
 import ChatPage from './Components/ChatPage';
-
+import Documentupload from './Components/Documentupload';
 
 
 
@@ -41,11 +41,12 @@ const App = () => {
         <Route path="/ownprofile" element={<OwnProfile />} />
         <Route path="/clientownprofile" element={<ClientProfile />} />
         <Route path="/logout" element={<Logout />} />
-        <Route path="/form" element={<Form/>} />
+        <Route path="/form/:id" element={<Form/>} />
+
         <Route path="/viewappo" element={<Bookedclients/>} />
         <Route path="/viewclients" element={<Viewuser/>} />
        <Route path="/chat/:roomId" element={<ChatPage/>} />
-        
+       <Route path="/doc" element={<Documentupload/>} />
       
       </Routes>
     </Router>

@@ -176,9 +176,9 @@ const OwnProfile = () => {
               <Button variant="outlined" color="secondary" onClick={handleEditClick} sx={{ marginTop: '1rem' }}>
                 Edit Profile
               </Button>
-              <Button variant="outlined" color="secondary" sx={{ marginTop: '1rem', marginLeft: '1rem' }} onClick={gotoAppointment}>
+               <Button variant="outlined" color="secondary" sx={{ marginTop: '1rem', marginLeft: '1rem' }} onClick={gotoAppointment}>
                 View Appointments
-              </Button>
+              </Button> 
               <Button variant="outlined" color="secondary" sx={{ marginTop: '1rem', marginLeft: '1rem' }} onClick={gotoChat}>
                 Chat
               </Button>

@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
   TextField,
-  DialogActions,
   Button,
   Snackbar,
   Alert,
@@ -12,6 +9,9 @@ import {
 import axios from 'axios';
 
 const Form = ({ dialogOpen, setDialogOpen }) => {
+  // Destructure advocateId from useParams at the top level
+  const { id } = useParams();
+
   const [formValues, setFormValues] = useState({
     name: '',
     phone: '',
@@ -33,18 +33,26 @@ const Form = ({ dialogOpen, setDialogOpen }) => {
       setSnackbarOpen(true);
       return;
     }
+    
     try {
-      const response = await axios.post('http://localhost:5000/api/appoinment/create', {
+      let client = localStorage.getItem('client');
+      let clientId = JSON.parse(client)._id;
+      let advocateId=id;
+
+      const response = await axios.post('http://localhost:5000/api/viewappo/client', {
+        clientId,
+        advocateId,
         name,
         phone,
         date,
         time
       });
-      if (response.data.message === 'Appointment booked successfully!') {
-        setMessage('Appointment Booked successfully!');
+      console.log(response.data)
+      if (response.data.success==true) {
+        setMessage('Appointment booked successfully!');
         setSeverity('success');
       } else {
-        setMessage('Appointment Booking failed. Please try again.');
+        setMessage('Appointment booking failed. Please try again.');
         setSeverity('error');
       }
       
@@ -54,7 +62,6 @@ const Form = ({ dialogOpen, setDialogOpen }) => {
       setSeverity('error');
     } finally {
       setSnackbarOpen(true);
-    
       setFormValues({ name: '', phone: '', date: '', time: '' });
     }
   };
@@ -66,44 +73,42 @@ const Form = ({ dialogOpen, setDialogOpen }) => {
   return (
     <>
       <TextField
-            margin="normal"
-            label="Name"
-            fullWidth
-            value={formValues.name}
-            onChange={(e) => setFormValues({ ...formValues, name: e.target.value })}
-          />
-          <TextField
-            margin="normal"
-            label="Phone Number"
-            fullWidth
-            value={formValues.phone}
-            onChange={(e) => setFormValues({ ...formValues, phone: e.target.value })}
-          />
-          <TextField
-            margin="normal"
-            label="Appoinmentdate"
-            type="date"
-            fullWidth
-            value={formValues.date}
-            onChange={(e) => setFormValues({ ...formValues, date: e.target.value })}
-          />
-          <TextField
-            margin="normal"
-            label=" "
-            type="time"
-            fullWidth
-            value={formValues.time}
-            onChange={(e) => setFormValues({ ...formValues, time: e.target.value })}
-          />
-       
-        
-          <Button  color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleRegister} color="primary">
-            Submit
-          </Button>
-      
+        margin="normal"
+        label="Name"
+        fullWidth
+        value={formValues.name}
+        onChange={(e) => setFormValues({ ...formValues, name: e.target.value })}
+      />
+      <TextField
+        margin="normal"
+        label="Phone Number"
+        fullWidth
+        value={formValues.phone}
+        onChange={(e) => setFormValues({ ...formValues, phone: e.target.value })}
+      />
+      <TextField
+        margin="normal"
+        label="Appointment Date"
+        type="date"
+        fullWidth
+        value={formValues.date}
+        onChange={(e) => setFormValues({ ...formValues, date: e.target.value })}
+      />
+      <TextField
+        margin="normal"
+        label="Appointment Time"
+        type="time"
+        fullWidth
+        value={formValues.time}
+        onChange={(e) => setFormValues({ ...formValues, time: e.target.value })}
+      />
+
+      <Button onClick={() => setDialogOpen(false)} color="primary">
+        Cancel
+      </Button>
+      <Button onClick={handleRegister} color="primary">
+        Submit
+      </Button>
 
       <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
         <Alert onClose={handleSnackbarClose} severity={severity}>

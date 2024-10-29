@@ -9,14 +9,13 @@ import {
   CircularProgress,
   Button
 } from '@mui/material';
-
 import { useNavigate } from 'react-router-dom';
 
 const AdvocateProfile = () => {
-  const [advocates, setAdvocates] = useState([]); // Array to hold advocates
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(''); 
-  const navigate = useNavigate(); // Error state
+  const [advocates, setAdvocates] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAdvocates = async () => {
@@ -33,9 +32,11 @@ const AdvocateProfile = () => {
 
     fetchAdvocates();
   }, []);
-  const handleBookAppointment = () => {
-    navigate('/form'); // Navigate to the form page
+
+  const handleBookAppointment = (id) => {
+    navigate(`/form/${id}`);
   };
+
   return (
     <Container>
       <Typography variant="h4" gutterBottom>
@@ -61,11 +62,13 @@ const AdvocateProfile = () => {
                     <Typography color="textSecondary">
                       Area of Expertise: {advocate.expertise}
                     </Typography>
-                   
-                      <Button variant="contained" color="primary"onClick={handleBookAppointment}>
-                        Book Appointment
-                      </Button>
-                      
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => handleBookAppointment(advocate._id)} // Wrap in arrow function
+                    >
+                      Book Appointment
+                    </Button>
                   </CardContent>
                 </Card>
               </Grid>
